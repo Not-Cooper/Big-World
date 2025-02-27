@@ -1,0 +1,83 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhhtijjtnm2ht"]
+
+[ext_resource type="Script" path="res://Objects/Interactables/Button.gd" id="1_3wscn"]
+[ext_resource type="Texture2D" uid="uid://bp2oxlphs3fve" path="res://Art/Environment/Interactables/Button.png" id="1_qi3f1"]
+[ext_resource type="Texture2D" uid="uid://x31lsbmb5bi2" path="res://Art/Environment/Interactables/ButtonPressed.png" id="3_q2w0m"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_40e1h"]
+size = Vector2(16, 8)
+
+[sub_resource type="Animation" id="Animation_b5r5v"]
+resource_name = "Pressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("1_qi3f1"), ExtResource("3_q2w0m")]
+}
+
+[sub_resource type="Animation" id="Animation_kg63b"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_qi3f1")]
+}
+
+[sub_resource type="Animation" id="Animation_5ew38"]
+resource_name = "UnPressed"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("3_q2w0m"), ExtResource("1_qi3f1")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mvvta"]
+_data = {
+"Pressed": SubResource("Animation_b5r5v"),
+"RESET": SubResource("Animation_kg63b"),
+"UnPressed": SubResource("Animation_5ew38")
+}
+
+[node name="Button" type="Node2D"]
+script = ExtResource("1_3wscn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -6)
+texture = ExtResource("1_qi3f1")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_40e1h")
+
+[node name="ButtonAnimation" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mvvta")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

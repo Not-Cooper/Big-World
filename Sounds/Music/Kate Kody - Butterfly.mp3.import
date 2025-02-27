@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dmxwato5obutk"
+path="res://.godot/imported/Kate Kody - Butterfly.mp3-27be6b35dbf70ff9b80a855464b44d79.mp3str"
+
+[deps]
+
+source_file="res://Sounds/Music/Kate Kody - Butterfly.mp3"
+dest_files=["res://.godot/imported/Kate Kody - Butterfly.mp3-27be6b35dbf70ff9b80a855464b44d79.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

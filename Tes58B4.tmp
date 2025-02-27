@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://cqtm5h6i6v7x1"]
+
+[ext_resource type="Texture2D" uid="uid://by1jujhy40djc" path="res://Art/Environment/Basic-Platforms.png" id="1_66e0c"]
+[ext_resource type="Script" path="res://CharacterController.gd" id="2_onmi3"]
+[ext_resource type="Texture2D" uid="uid://cby127tc6erd" path="res://Art/Character/Character.png" id="2_t5753"]
+[ext_resource type="Script" path="res://BlockControl.gd" id="4_pvtr5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hoewf"]
+texture = ExtResource("1_66e0c")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:0/0 = 0
+2:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:0/0/physics_layer_0/angular_velocity = 0.0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:0/0 = 0
+3:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:0/0/physics_layer_0/angular_velocity = 0.0
+3:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:1/0/physics_layer_0/angular_velocity = 0.0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:2/0 = 0
+2:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:2/0/physics_layer_0/angular_velocity = 0.0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:2/0 = 0
+3:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:2/0/physics_layer_0/angular_velocity = 0.0
+3:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:3/0 = 0
+0:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:3/0/physics_layer_0/angular_velocity = 0.0
+0:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+1:3/0 = 0
+1:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:3/0/physics_layer_0/angular_velocity = 0.0
+1:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:3/0 = 0
+2:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:3/0/physics_layer_0/angular_velocity = 0.0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:3/0 = 0
+3:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:3/0/physics_layer_0/angular_velocity = 0.0
+3:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSet" id="TileSet_oqwhc"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_hoewf")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_idm4j"]
+size = Vector2(24, 43)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1ydg0"]
+size = Vector2(35, 36)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(292, -109)
+zoom = Vector2(1.2, 1.2)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_oqwhc")
+format = 2
+layer_0/tile_data = PackedInt32Array(262136, 0, 0, 262137, 0, 0, 262138, 0, 0, 262139, 0, 0, 262140, 0, 0, 262141, 0, 0, 262142, 0, 0, 262143, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196611, 0, 0, 196612, 0, 0, 196613, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 196617, 0, 0, 196618, 0, 0, 196619, 0, 0, 196620, 0, 0, 196621, 0, 0, 196622, 0, 0, 262134, 0, 0, 262135, 0, 0, 262133, 196608, 0, 196597, 65536, 0, 131061, 65536, 0, 65525, 65536, 0, -11, 65536, 0, -65547, 65536, 0, -131083, 65536, 0, -196619, 65536, 0, -262155, 65536, 0, -327691, 65536, 0, 196623, 0, 0, 196624, 0, 0, 196625, 0, 0, 196626, 0, 0, 196627, 0, 0, 196628, 0, 0, 196629, 0, 0, 196630, 0, 0, 196631, 0, 0, 196632, 0, 0, 196633, 0, 0, 196634, 0, 0, 196635, 0, 0, 196636, 0, 0, 196637, 0, 0, 196638, 0, 0, 196639, 0, 0, 196640, 0, 0, 196641, 0, 0, 196642, 0, 0, 196643, 0, 0, 196644, 0, 0, 196645, 0, 0, 196646, 0, 0, 196647, 0, 0, 196648, 0, 0, 196649, 0, 0, 196650, 0, 0, 196651, 0, 0, 196652, 0, 0, 196653, 0, 0, 196654, 0, 0, -131060, 0, 3, -131061, 0, 0, -131062, 0, 0, -131063, 0, 0, -131064, 0, 0, -131065, 0, 0, -131066, 0, 0, -131067, 0, 0, -131068, 0, 0, -131069, 0, 0, -131070, 65536, 3)
+
+[node name="PlayerBody" type="CharacterBody2D" parent="."]
+floor_constant_speed = true
+floor_snap_length = 15.5
+script = ExtResource("2_onmi3")
+speed = 200.0
+acceleration = 2000.0
+jump_strength = 575.0
+gravity = 2000.0
+friction = 2000.0
+jump_cancel_modifier = 80.0
+push_force = 60.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerBody"]
+position = Vector2(-1, 14.5)
+shape = SubResource("RectangleShape2D_idm4j")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerBody"]
+position = Vector2(-1, 13)
+scale = Vector2(0.71875, 0.71875)
+texture = ExtResource("2_t5753")
+
+[node name="CoyoteTimer" type="Timer" parent="PlayerBody"]
+wait_time = 0.1
+one_shot = true
+
+[node name="BoxPushing" type="Node2D" parent="PlayerBody"]
+
+[node name="Box" type="RigidBody2D" parent="."]
+mass = 10.0
+script = ExtResource("4_pvtr5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Box"]
+position = Vector2(303.675, -49.73)
+scale = Vector2(1.47, 1.47)
+shape = SubResource("RectangleShape2D_1ydg0")
+
+[node name="Sprite2D" type="Sprite2D" parent="Box/CollisionShape2D"]
+position = Vector2(0, 0.150007)
+scale = Vector2(2.1875, 2.21667)
+texture = ExtResource("1_66e0c")
+region_enabled = true
+region_rect = Rect2(32, 16, 16, 16)

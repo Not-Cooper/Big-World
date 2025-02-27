@@ -1,0 +1,192 @@
+[gd_scene load_steps=19 format=3 uid="uid://drbf0e1xmhf4h"]
+
+[ext_resource type="Script" path="res://Objects/ConnectedBoxControll.gd" id="1_r68oc"]
+[ext_resource type="Texture2D" uid="uid://bulggs22fa45l" path="res://Art/Blocks/Box.png" id="2_rlxuj"]
+[ext_resource type="Script" path="res://Objects/CollisionBox.gd" id="3_muhyi"]
+[ext_resource type="Script" path="res://Objects/ScalableArea.gd" id="4_1mjel"]
+[ext_resource type="Texture2D" uid="uid://yl7o7rs3vl05" path="res://Art/Blocks/Selected.png" id="5_kdgwf"]
+[ext_resource type="Texture2D" uid="uid://oshiwg5srpyh" path="res://Art/Blocks/BoxSelected.png" id="6_3f4cb"]
+[ext_resource type="Texture2D" uid="uid://bs4cvra3fcukk" path="res://Art/Blocks/ReduceBox.png" id="7_lv2xg"]
+[ext_resource type="Texture2D" uid="uid://pohukutwc3dk" path="res://Art/Blocks/ConnectedBox.png" id="8_yacqj"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pn0vs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x87m"]
+size = Vector2(35, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61hrs"]
+size = Vector2(14.7959, 34.6939)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7j0l"]
+size = Vector2(34.6939, 35.3741)
+
+[sub_resource type="Animation" id="Animation_ir3mm"]
+resource_name = "Connected"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("8_yacqj")]
+}
+
+[sub_resource type="Animation" id="Animation_8a7a4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_rlxuj")]
+}
+
+[sub_resource type="Animation" id="Animation_h0481"]
+resource_name = "ScaleDown"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_lv2xg")]
+}
+
+[sub_resource type="Animation" id="Animation_8coyh"]
+resource_name = "ScaleUp"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_3f4cb")]
+}
+
+[sub_resource type="Animation" id="Animation_526yx"]
+resource_name = "Selected"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_kdgwf")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_joic2"]
+_data = {
+"Connected": SubResource("Animation_ir3mm"),
+"RESET": SubResource("Animation_8a7a4"),
+"ScaleDown": SubResource("Animation_h0481"),
+"ScaleUp": SubResource("Animation_8coyh"),
+"Selected": SubResource("Animation_526yx")
+}
+
+[node name="ConnectedBox" type="RigidBody2D" groups=["Scalable"]]
+collision_layer = 9
+physics_material_override = SubResource("PhysicsMaterial_pn0vs")
+lock_rotation = true
+script = ExtResource("1_r68oc")
+kick_force = 600.0
+scale_amount = 0.7
+interpolation = 0.5
+bouncieness = 150.0
+
+[node name="BoxCollider" type="CollisionShape2D" parent="."]
+position = Vector2(303.675, -49.73)
+scale = Vector2(1.47, 1.47)
+shape = SubResource("RectangleShape2D_8x87m")
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxCollider"]
+position = Vector2(0, 0.150007)
+scale = Vector2(2.1875, 2.21667)
+texture = ExtResource("2_rlxuj")
+region_rect = Rect2(0, 80, 16, 16)
+
+[node name="LeftCollision" type="Area2D" parent="BoxCollider"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_muhyi")
+side = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCollider/LeftCollision"]
+position = Vector2(-9.98299, 0.496598)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_61hrs")
+
+[node name="RightCollision" type="Area2D" parent="BoxCollider"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_muhyi")
+side = -1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCollider/RightCollision"]
+position = Vector2(9.74491, 0.496598)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_61hrs")
+
+[node name="ScalableArea" type="Area2D" parent="BoxCollider"]
+visible = false
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("4_1mjel")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCollider/ScalableArea"]
+position = Vector2(-0.119034, -0.18367)
+shape = SubResource("RectangleShape2D_e7j0l")
+
+[node name="ScaleTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="CheckUp" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(0, -54)
+collision_mask = 32
+
+[node name="CheckLeft" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(-52, 0)
+
+[node name="CheckRight" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(53, 0)
+
+[node name="AnimateBox" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_joic2")
+}
+
+[connection signal="box_kicked" from="BoxCollider/LeftCollision" to="." method="_on_collision_box_box_kicked"]
+[connection signal="box_kicked" from="BoxCollider/RightCollision" to="." method="_on_collision_box_box_kicked"]
+[connection signal="scalable" from="BoxCollider/ScalableArea" to="." method="_on_scalable"]
+[connection signal="timeout" from="ScaleTimer" to="." method="_on_timer_timeout"]

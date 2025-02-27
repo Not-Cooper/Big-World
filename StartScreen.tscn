@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://8422jhj0wgev"]
+
+[ext_resource type="Script" path="res://StartScreen.gd" id="1_gryw3"]
+[ext_resource type="Texture2D" uid="uid://nrl5j73g2v1u" path="res://Art/Misc/Start.png" id="2_oert2"]
+
+[sub_resource type="SystemFont" id="SystemFont_y2lgv"]
+font_names = PackedStringArray("Impact")
+font_weight = 450
+font_stretch = 125
+
+[sub_resource type="LabelSettings" id="LabelSettings_icp10"]
+line_spacing = 0.0
+font = SubResource("SystemFont_y2lgv")
+font_size = 58
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="SystemFont" id="SystemFont_jlx6x"]
+font_names = PackedStringArray("Impact")
+
+[sub_resource type="SystemFont" id="SystemFont_oiniw"]
+font_names = PackedStringArray("Impact")
+
+[node name="StartScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+script = ExtResource("1_gryw3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+top_level = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 60
+
+[node name="Seperator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 0
+text = "Big World"
+label_settings = SubResource("LabelSettings_icp10")
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(242.095, 0)
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 18
+alignment = 1
+
+[node name="Separator" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(21.19, 158.945)
+layout_mode = 2
+
+[node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_jlx6x")
+theme_override_font_sizes/font_size = 30
+text = "Play"
+
+[node name="Quit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("SystemFont_oiniw")
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oert2")
+expand_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

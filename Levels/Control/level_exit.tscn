@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfiju6ve1rt3t"]
+
+[ext_resource type="Script" path="res://Levels/Control/level_exit.gd" id="1_ujj0b"]
+[ext_resource type="Texture2D" uid="uid://dkptremovxwq2" path="res://Art/Environment/Interactables/Door.png" id="2_e5mh6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yj1uy"]
+radius = 8.0
+height = 32.0
+
+[node name="LevelExit" type="Node2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_ujj0b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_e5mh6")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 1)
+shape = SubResource("CapsuleShape2D_yj1uy")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

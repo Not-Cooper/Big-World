@@ -1,0 +1,164 @@
+[gd_scene load_steps=15 format=3 uid="uid://d0evn6b1mcumt"]
+
+[ext_resource type="Script" path="res://Objects/BoxControll.gd" id="1_i2x7m"]
+[ext_resource type="Texture2D" uid="uid://itcbymwpybdl" path="res://Art/Blocks/HeavyBlock.png" id="2_han6s"]
+[ext_resource type="Script" path="res://Objects/CollisionBox.gd" id="3_ncwuj"]
+[ext_resource type="Texture2D" uid="uid://bs4cvra3fcukk" path="res://Art/Blocks/ReduceBox.png" id="4_7kpgk"]
+[ext_resource type="Texture2D" uid="uid://oshiwg5srpyh" path="res://Art/Blocks/BoxSelected.png" id="5_7hcqi"]
+[ext_resource type="Texture2D" uid="uid://x4bvfnmjv8ip" path="res://Art/Blocks/HeavyBlockSelected.png" id="6_urgdy"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_pn0vs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8x87m"]
+size = Vector2(35, 36)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_61hrs"]
+size = Vector2(14.7959, 34.6939)
+
+[sub_resource type="Animation" id="Animation_vqovs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_han6s")]
+}
+
+[sub_resource type="Animation" id="Animation_m1tks"]
+resource_name = "ScaleDown"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_7kpgk")]
+}
+
+[sub_resource type="Animation" id="Animation_bftxa"]
+resource_name = "ScaleUp"
+length = 0.2
+loop_mode = 1
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [ExtResource("5_7hcqi"), ExtResource("5_7hcqi")]
+}
+
+[sub_resource type="Animation" id="Animation_wwlgw"]
+resource_name = "Selected"
+length = 0.001
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("BoxCollider/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("6_urgdy")]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jlsx6"]
+_data = {
+"RESET": SubResource("Animation_vqovs"),
+"ScaleDown": SubResource("Animation_m1tks"),
+"ScaleUp": SubResource("Animation_bftxa"),
+"Selected": SubResource("Animation_wwlgw")
+}
+
+[node name="Box" type="RigidBody2D" groups=["Scalable"]]
+collision_layer = 137
+collision_mask = 129
+physics_material_override = SubResource("PhysicsMaterial_pn0vs")
+lock_rotation = true
+script = ExtResource("1_i2x7m")
+kick_force = 600.0
+scale_amount = 0.7
+interpolation = 0.5
+bouncieness = 150.0
+
+[node name="BoxCollider" type="CollisionShape2D" parent="."]
+position = Vector2(303.675, -49.73)
+scale = Vector2(1.47, 1.47)
+shape = SubResource("RectangleShape2D_8x87m")
+
+[node name="Sprite2D" type="Sprite2D" parent="BoxCollider"]
+position = Vector2(0, 0.150007)
+scale = Vector2(2.1875, 2.21667)
+texture = ExtResource("2_han6s")
+region_rect = Rect2(0, 80, 16, 16)
+
+[node name="LeftCollision" type="Area2D" parent="BoxCollider"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_ncwuj")
+side = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCollider/LeftCollision"]
+position = Vector2(-9.98299, 0.496598)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_61hrs")
+
+[node name="RightCollision" type="Area2D" parent="BoxCollider"]
+visible = false
+collision_layer = 0
+collision_mask = 2
+script = ExtResource("3_ncwuj")
+side = -1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoxCollider/RightCollision"]
+position = Vector2(9.74491, 0.496598)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_61hrs")
+
+[node name="ScaleTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.1
+one_shot = true
+
+[node name="CheckUp" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(0, -54)
+collision_mask = 32
+
+[node name="CheckLeft" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(-52, 0)
+
+[node name="CheckRight" type="RayCast2D" parent="."]
+position = Vector2(303, -50)
+target_position = Vector2(53, 0)
+
+[node name="AnimateBox" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_jlsx6")
+}
+
+[connection signal="box_kicked" from="BoxCollider/LeftCollision" to="." method="_on_collision_box_box_kicked"]
+[connection signal="box_kicked" from="BoxCollider/RightCollision" to="." method="_on_collision_box_box_kicked"]
+[connection signal="timeout" from="ScaleTimer" to="." method="_on_timer_timeout"]

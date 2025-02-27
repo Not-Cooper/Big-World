@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://37ui3a7bib2r"]
+
+[ext_resource type="AudioStream" uid="uid://dmxwato5obutk" path="res://Sounds/Music/Kate Kody - Butterfly.mp3" id="1_fxu2k"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer"]
+stream = ExtResource("1_fxu2k")
+volume_db = -14.182
+autoplay = true
