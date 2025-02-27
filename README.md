@@ -6,4 +6,4 @@ Big World is a 2d physics based platformer where the player needs to navigate a 
 
 # How Do I Play?
 While you could pull the repository and build it yourself (you will need to create your own art for this), you could also visit my page on itch.io
-itch.io page: https://not-cooper.itch.io/big-world
+  itch.io page: https://not-cooper.itch.io/big-world
